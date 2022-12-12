@@ -1,10 +1,8 @@
-"use strict";
+/* eslint-disable require-jsdoc */
+'use strict';
 const {
   Model, Op
 } = require('sequelize');
-
-
-//const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Todo extends Model {
     /**
@@ -12,12 +10,12 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate(models) {
+    static associate() {
       // define association here
     }
 
-    static addTodo({ title, dueDate }) {
-      return this.create({ title: title, dueDate: dueDate, completed: false });
+    static addTodo({title, dueDate}) {
+      return this.create({title: title, dueDate: dueDate, completed: false});
     }
 
     static getTodos(){
@@ -40,6 +38,7 @@ module.exports = (sequelize, DataTypes) => {
         },
       });
     }
+
     static async dueLater() {
       // FILL IN HERE TO RETURN ITEMS DUE LATER
       return await Todo.findAll({
@@ -50,20 +49,18 @@ module.exports = (sequelize, DataTypes) => {
     }
 
 
+
     markAsCompleted() {
-      return this.update({ completed: true });
+      return this.update({completed: true});
     }
   }
-  Todo.init(
-    {
-      title: DataTypes.STRING,
-      dueDate: DataTypes.DATEONLY,
-      completed: DataTypes.BOOLEAN,
-    },
-    {
-      sequelize,
-      modelName: "Todo",
-    }
-  );
+  Todo.init({
+    title: DataTypes.STRING,
+    dueDate: DataTypes.DATEONLY,
+    completed: DataTypes.BOOLEAN,
+  }, {
+    sequelize,
+    modelName: 'Todo',
+  });
   return Todo;
 };

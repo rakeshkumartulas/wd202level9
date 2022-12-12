@@ -5,6 +5,8 @@ const app = express();
 
 const {Todo} = require('./models');
 const bodyParser = require('body-parser');
+
+app.use(express.urlencoded({extended: false}));
 const path = require('path');
 
 app.use(bodyParser.json());
@@ -15,13 +17,12 @@ app.set('view engine', 'ejs');
 
 app.get('/', async (request, response)=>{
   const allTodos = await Todo.getTodos();
-  const over_due = await Todo.overdue();
-  const due_Today = await Todo.dueToday();
-  const due_Later = await Todo.dueLater();
-    if (request.accepts('html')) {
+  const overdue = await Todo.overdue();
+  const dueToday = await Todo.dueToday();
+  const dueLater = await Todo.dueLater();
+  if (request.accepts('html')) {
     response.render('index', {
-      allTodos,over_due, due_Today, due_Later,
-      
+      allTodos, overdue, dueToday, dueLater,
     });
   } else {
     response.json({allTodos});
@@ -40,7 +41,7 @@ app.post('/todos', async (request, response)=>{
     const todo =await Todo.addTodo({
       title: request.body.title, dueDate: request.body.dueDate,
     });
-    return response.json(todo);
+    return response.redirect('/');
   } catch (error) {
     console.log(error);
     return response.status(422).json(error);
