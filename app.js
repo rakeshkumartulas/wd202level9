@@ -61,7 +61,12 @@ app.delete('/todos/:id', async (request, response)=> {
  // }
   });
 
+<<<<<<< HEAD
 app.put('/todos/:id', async (request, response) => {
+=======
+app.put('/todos/:id/markAsCompleted', async (request, response)=>{
+  console.log('We have updated a todo with id:', request.params.id);
+>>>>>>> e96867fe87865f86da6e90df4369fa9557837967
   const todo = await Todo.findByPk(request.params.id);
   try {
     const upTodo = await todo.setCompletionStatus(request.body.completed);
@@ -70,4 +75,17 @@ app.put('/todos/:id', async (request, response) => {
     return response.status(422).json(error);
   }
 });
+<<<<<<< HEAD
 module.exports = app;
+=======
+
+
+app.delete('/todos/:id', async function(request, response) {
+  console.log('I have to delete any Item a Todo with ID: ', request.params.id);
+  
+  const deleteFlag = await Todo.destroy({where: {id: request.params.id}});
+  response.send(deleteFlag ? true : false);
+});
+
+module.exports = app;
+>>>>>>> e96867fe87865f86da6e90df4369fa9557837967

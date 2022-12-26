@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="<%= csrfToken %>">
     <script src="https://cdn.tailwindcss.com"></script>
+<<<<<<< HEAD
     <link href="./css/style.css" rel="stylesheet"> 
     <title> MY Document</title>
     <script>
@@ -48,6 +49,10 @@
             .catch((err)=>console.error(err))
         }
     </script>
+=======
+    <link href="./css/styles.css" rel="stylesheet"> 
+    <title> My Render Web Document</title>
+>>>>>>> e96867fe87865f86da6e90df4369fa9557837967
 </head>
 <body>
     <div class="grid grid-cols-6">
@@ -66,13 +71,18 @@
                 
                 
                     <div class="flex-none">
+<<<<<<< HEAD
                         <button type="submit" class="bg-green-500 text-white px-5 py-2 rounded font-medium mr-2 py1.5">Add Items</button>
+=======
+                        <button type="submit" class="bg-green-500 text-white px-5 py-2 rounded font-medium mr-2 py1.5">Add New </button>
+>>>>>>> e96867fe87865f86da6e90df4369fa9557837967
                     </div>
                 </div>
                 
                
                 
             </form>
+<<<<<<< HEAD
             <div>
               
                 <%- include('todo.ejs', {title: "Overdue", data: over_due}) %>
@@ -82,6 +92,11 @@
             </div>
             
             
+=======
+           
+            <%- include("todos.ejs") %>
+           <!-- <%- include('footer.ejs') %> -->
+>>>>>>> e96867fe87865f86da6e90df4369fa9557837967
         </div>
     </div>
     
